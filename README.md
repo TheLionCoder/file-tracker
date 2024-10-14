@@ -20,7 +20,7 @@ To run the program , use the following command:
 _Get Help_:
 
 ```sh
-cargo run --help
+cargo run  -- --help
 ```
 
 #### _Arguments_
@@ -34,5 +34,5 @@ cargo run --help
 To inventory files in **_two_** subdirectories where the file have **headers** .
 
 ```sh
-cargo run -- -d data/ -h -m 2
+cargo run -- -d data/ -h -depth 2
 ```
