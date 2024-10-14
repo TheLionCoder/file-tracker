@@ -1,8 +1,8 @@
 # File Tracker
 
 This project is designed to list the plain text (`.txt`)  
-and csv (`.csv) files in a directory and create an **_inventory_**
-in a Excel file, which will be saved at the root of the files are located.
+and csv (`.csv`) files in a directory and create an **_inventory_**
+in a Excel file, which will be saved in the folder where the files are located.
 
 ## Installation
 
