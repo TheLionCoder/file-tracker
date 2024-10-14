@@ -17,14 +17,14 @@ pub fn parse_cli() -> ArgMatches {
                 .short('h')
                 .long("header")
                 .action(clap::ArgAction::SetTrue)
-                .help("Whether the files have a header"),
+                .help("The maximum depth to search for files"),
         )
         .arg(
             Arg::new("max-depth")
                 .short('m')
                 .long("depth")
                 .default_value("1")
-                .help("The min depth of inventory to be, default is 0 (root)"),
+                .help("The max depth of inventory to be."),
         )
         .get_matches()
 }
