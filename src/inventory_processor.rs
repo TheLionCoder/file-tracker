@@ -7,11 +7,10 @@ use walkdir::WalkDir;
 
 use crate::file_len_inventory::{count_lines, is_hidden};
 
-
 enum FileExtension {
     Txt,
     Csv,
-    Other
+    Other,
 }
 
 impl FileExtension {
@@ -19,14 +18,13 @@ impl FileExtension {
         match path.extension().and_then(|ext| ext.to_str()) {
             Some(ext) if ext.eq_ignore_ascii_case("txt") => FileExtension::Txt,
             Some(ext) if ext.eq_ignore_ascii_case("csv") => FileExtension::Csv,
-            _ => FileExtension::Other
+            _ => FileExtension::Other,
         }
     }
-
 }
 
 pub(crate) fn process_inventory(
-    dir_path: &str,
+    dir_path: &Path,
     max_depth: usize,
     header: bool,
 ) -> Arc<Mutex<HashMap<PathBuf, usize>>> {
@@ -56,7 +54,8 @@ pub(crate) fn process_inventory(
 
 fn is_text_or_csv_file(path: &Path) -> bool {
     matches!(
-        FileExtension::from_path(path), FileExtension::Txt | FileExtension::Csv
+        FileExtension::from_path(path),
+        FileExtension::Txt | FileExtension::Csv
     )
 }
 

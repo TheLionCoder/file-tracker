@@ -1,6 +1,6 @@
 use clap::{Arg, ArgMatches};
 
-pub fn parse_cli() -> ArgMatches {
+pub(crate) fn parse_cli() -> ArgMatches {
     clap::Command::new("File Length Inventory")
         .version("0.1.0")
         .author("TheLionCoder")

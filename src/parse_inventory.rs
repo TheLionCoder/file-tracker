@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
 use rust_xlsxwriter::{
@@ -8,7 +8,7 @@ use rust_xlsxwriter::{
 
 pub(crate) fn write_inventory(
     inventory: Arc<Mutex<HashMap<PathBuf, usize>>>,
-    path: &str,
+    path: &Path,
 ) -> Result<(), XlsxError> {
     // Lock the inventory to print the results
     let inventory = inventory.lock().unwrap();
@@ -46,24 +46,25 @@ pub(crate) fn write_inventory(
         .set_background_color(Color::Yellow)
         .set_num_format("#,#####");
 
-
     worksheet.set_tab_color(Color::Blue);
     worksheet.autofilter(0, 0, 0, 3)?;
 
     worksheet.write_with_format(0, 0, "path", &header)?;
     worksheet.write_with_format(0, 1, "ancestor_directory", &header)?;
     worksheet.write_with_format(0, 2, "parent_directory", &header)?;
-    worksheet.write_with_format(0, 3,"file", &header)?;
+    worksheet.write_with_format(0, 3, "file", &header)?;
     worksheet.write_with_format(0, 4, "line_count", &header)?;
 
     for (path, line_count) in &*inventory {
         let path: &PathBuf = path;
         let directory: &str = path.parent().unwrap().to_str().unwrap();
-        let parent_component: &str = path.parent()
+        let parent_component: &str = path
+            .parent()
             .and_then(|path| path.file_name())
             .and_then(|name| name.to_str())
             .unwrap_or("<NA>");
-        let ancestor_component: &str = path.parent()
+        let ancestor_component: &str = path
+            .parent()
             .and_then(|path| path.parent())
             .and_then(|path| path.file_name())
             .and_then(|name| name.to_str())

@@ -1,17 +1,17 @@
 use clap::ArgMatches;
 use std::error::Error;
-
+use std::path::Path;
 use inventory_processor::process_inventory;
 use parse_inventory::write_inventory;
 
-mod cli_parser;
+mod cli_parsing;
 mod file_len_inventory;
 mod inventory_processor;
 mod parse_inventory;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let matches: ArgMatches = cli_parser::parse_cli();
-    let dir_path: &str = matches
+    let matches: ArgMatches = cli_parsing::parse_cli();
+    let dir_path_str: &str = matches
         .get_one::<String>("dir-path")
         .expect("The directory path is required but was not provided");
     let header: bool = matches.get_flag("header");
@@ -20,6 +20,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         .unwrap()
         .parse()
         .unwrap();
+
+    let dir_path: &Path = Path::new(dir_path_str);
 
     let inventory = process_inventory(dir_path, max_depth, header);
 
