@@ -17,7 +17,7 @@ pub(crate) fn parse_cli() -> ArgMatches {
                 .short('h')
                 .long("header")
                 .action(clap::ArgAction::SetTrue)
-                .help("The maximum depth to search for files"),
+                .help("Whether the files include a header"),
         )
         .arg(
             Arg::new("max-depth")

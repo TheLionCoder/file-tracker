@@ -1,8 +1,8 @@
 use clap::ArgMatches;
-use std::error::Error;
-use std::path::Path;
 use inventory_processor::process_inventory;
 use parse_inventory::write_inventory;
+use std::error::Error;
+use std::path::Path;
 
 mod cli_parsing;
 mod file_len_inventory;
