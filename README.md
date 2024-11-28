@@ -13,26 +13,30 @@ git clone git@github.com:TheLionCoder/file-tracker.git
 cd file-tracker
 ```
 
-### Usage
+## Usage
 
-To run the program , use the following command:
-
-_Get Help_:
+To run the program , use the following commands:
 
 ```sh
-cargo run  -- --help
+cargo bild --release
 ```
 
-#### _Arguments_
+_then_:
+
+```sh
+cargo target/release/file-tracker
+```
+
+## _Arguments_
 
 - `-d, --dir <dir-path> The path to the directory to be inventoried`
 - `-h, --header        Indicates whether the files have a header`
 - `-m, --depth <max-depth> The max depth to search for files. [default 1]`
 
-### Example
+## Example
 
 To inventory files in **_two_** subdirectories where the file have **headers** .
 
 ```sh
-cargo run -- -d data/ -h -depth 2
+cargo target/release/file-tracker -d data/ -h -depth 2
 ```
