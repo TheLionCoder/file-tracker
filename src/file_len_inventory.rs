@@ -3,7 +3,6 @@ use std::io::{BufRead, BufReader};
 use std::path::Path;
 use walkdir::DirEntry;
 
-#[allow(dead_code)]
 pub(crate) fn count_lines(file_path: &Path, header: bool) -> Result<usize, std::io::Error> {
     let skip: usize = if header { 1 } else { 0 };
     let file: File = File::open(file_path)?;

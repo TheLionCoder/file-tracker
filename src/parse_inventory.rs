@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
-use std::sync::{Arc, Mutex};
+use std::sync::{Arc, Mutex, MutexGuard};
 
 use rust_xlsxwriter::{
     Color, Format, FormatAlign, FormatBorder, Formula, Workbook, Worksheet, XlsxError,
@@ -11,10 +11,10 @@ pub(crate) fn write_inventory(
     path: &Path,
 ) -> Result<(), XlsxError> {
     // Lock the inventory to print the results
-    let inventory = inventory.lock().unwrap();
+    let inventory: MutexGuard<HashMap<PathBuf, usize>> = inventory.lock().unwrap();
     let mut row: u32 = 1_u32;
 
-    let mut workbook = Workbook::new();
+    let mut workbook : Workbook = Workbook::new();
     let worksheet: &mut Worksheet = workbook.add_worksheet().set_name("inventory")?;
 
     let header: Format = Format::new()

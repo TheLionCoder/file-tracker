@@ -15,10 +15,10 @@ cd file-tracker
 
 ## Usage
 
-To run the program , use the following commands:
+To run the program, use the following commands:
 
 ```sh
-cargo bild --release
+cargo build --release
 ```
 
 _then_:
@@ -35,7 +35,7 @@ cargo target/release/file-tracker
 
 ## Example
 
-To inventory files in **_two_** subdirectories where the file have **headers** .
+To inventory files in **_one_** subdirectories where the file have **headers** .
 
 ```sh
 cargo target/release/file-tracker -d data/ -h -depth 2
