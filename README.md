@@ -35,7 +35,8 @@ cargo target/release/file-tracker
 
 ## Example
 
-To inventory files in **_one_** subdirectories where the file have **headers** .
+To inventory files in the directory and **_one_** subdirectories
+where the file have **headers** .
 
 ```sh
 cargo target/release/file-tracker -d data/ -h -depth 2
