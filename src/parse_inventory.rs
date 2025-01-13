@@ -14,7 +14,7 @@ pub(crate) fn write_inventory(
     let inventory: MutexGuard<HashMap<PathBuf, usize>> = inventory.lock().unwrap();
     let mut row: u32 = 1_u32;
 
-    let mut workbook : Workbook = Workbook::new();
+    let mut workbook: Workbook = Workbook::new();
     let worksheet: &mut Worksheet = workbook.add_worksheet().set_name("inventory")?;
 
     let header: Format = Format::new()

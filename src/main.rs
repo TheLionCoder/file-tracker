@@ -1,10 +1,10 @@
-use std::collections::HashMap;
 use clap::ArgMatches;
 use parse_inventory::write_inventory;
+use rayon::prelude::*;
+use std::collections::HashMap;
 use std::error::Error;
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex, MutexGuard};
-use rayon::prelude::*;
 use tracing::{event, span, Level, Span};
 use walkdir::WalkDir;
 
@@ -49,7 +49,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let path: PathBuf = entry.path().to_path_buf();
             let file_name: &str = path.file_stem().unwrap().to_str().unwrap();
 
-            event!(Level::INFO, "Calculatin line count for {}", file_name);
+            event!(Level::INFO, "Calculating line count for {}", file_name);
             let inventory: Arc<Mutex<HashMap<PathBuf, usize>>> = Arc::clone(&inventory);
             if let Ok(line_count) = count_lines(&path, header) {
                 // use the lock method to access the inventory
