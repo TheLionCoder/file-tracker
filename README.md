@@ -1,10 +1,12 @@
-# File Tracker
+# :crab: File Tracker
 
 This project is designed to list the plain text (`.txt`)  
 and csv (`.csv`) files in a directory and create an **_inventory_**
 in a Excel file, which will be saved in the folder where the files are located.
 
-## Installation
+---
+
+## :package: Installation
 
 1. Clone the repository:
 
@@ -13,7 +15,9 @@ git clone git@github.com:TheLionCoder/file-tracker.git
 cd file-tracker
 ```
 
-## Usage
+---
+
+## :hammer_and_wrench: Usage
 
 To run the program, use the following commands:
 
